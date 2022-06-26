@@ -23,6 +23,9 @@ onready var sd =  get_node("sd_cd")
 var attackAnim_timer = null
 onready var attackAnim = get_node("AttackTimer")
 var spotDodge = 1
+var shake_amount = 1.0
+
+
 #Wands
 onready var weaponPos = $WandPosition
 var gun_data: = {
@@ -30,6 +33,7 @@ var gun_data: = {
 	lightning = preload("res://Slames/EquippedWands/e_LightningWand.tscn"),
 	ice = preload("res://Slames/EquippedWands/e_IceWand.tscn"),
 }
+
 
 #MOVEMENT
 var MAX_SPEED = 200
@@ -200,6 +204,10 @@ func hit():
 	#play death animation
 	$AnimationPlayer.play("Die")
 	Lives.lives -= 1
+#	Camera.set_offset(Vector2( \
+#		rand_range(-1.0, 1.0) * shake_amount, \
+#		rand_range(-1.0, 1.0) * shake_amount \
+#	))
 	for gun in weaponPos.get_children():
 		gun.queue_free()
 	death_timer.start()

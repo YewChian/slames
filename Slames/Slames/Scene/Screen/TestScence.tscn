@@ -179,6 +179,9 @@ scale = Vector2( 3, 3 )
 
 [node name="f_LightningWand" parent="." instance=ExtResource( 9 )]
 
+[node name="Camera" type="Camera" parent="."]
+current = true
+
 [connection signal="picked" from="f_FireWand" to="." method="_on_f_FireWand_picked"]
 [connection signal="ice_picked" from="f_IceWand" to="." method="_on_f_IceWand_ice_picked"]
 [connection signal="lightning_picked" from="f_LightningWand" to="." method="_on_f_LightningWand_lightning_picked"]

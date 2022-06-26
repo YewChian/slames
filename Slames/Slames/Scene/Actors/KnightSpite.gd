@@ -4,6 +4,7 @@ var start_loc
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
+
 var attack_cooldown_time = 1000
 var next_attack_time = 0
 var attack_damage = 30
@@ -24,6 +25,7 @@ onready var raycast3 = get_node("Attack3")
 onready var death_timer = get_node("Death")
 onready var attackAnim = get_node("AttackTimer")
 var spotDodge = 1
+var shake_amount = 1.0
 
 #GUN
 onready var weaponPos = $WandPosition
@@ -205,6 +207,10 @@ func make_visible_attack():
 func attackanim(direction):
 	get_node("Attack").visible = not get_node("Attack").visible
 	$AnimationPlayer.play(direction)
+#	camera.set_offset(Vector2( \
+#		rand_range(-1.0, 1.0) * shake_amount, \
+#		rand_range(-1.0, 1.0) * shake_amount \
+#	))
 	check_hit()
 	attackAnim.start()
 	

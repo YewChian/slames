@@ -45,10 +45,13 @@ func hit2(smth):
 #func _process(delta: float) -> void:
 #	pass
 func _on_f_FireWand_picked() -> void:
-	remove_child(fire_f)
+	#remove_child(fire_f)
+	fire_f.queue_free()
 
 func _on_f_IceWand_ice_picked() -> void:
-	remove_child(ice_f)
+	ice_f.queue_free()
+	#remove_child(ice_f)
 
 func _on_f_LightningWand_lightning_picked() -> void:
-	remove_child(lightning_f)
+	lightning_f.queue_free()
+	#remove_child(lightning_f)

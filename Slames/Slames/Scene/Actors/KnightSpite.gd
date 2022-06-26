@@ -188,8 +188,10 @@ func apply_movement(accerlation):
 func hit():
 	#play death animation
 	RedSlimeLives.lives -= 1
-	death_timer.start()
+	for gun in weaponPos.get_children():
+		gun.queue_free()
 	$AnimationPlayer.play("Die")
+	death_timer.start()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass

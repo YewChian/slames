@@ -200,6 +200,8 @@ func hit():
 	#play death animation
 	$AnimationPlayer.play("Die")
 	Lives.lives -= 1
+	for gun in weaponPos.get_children():
+		gun.queue_free()
 	death_timer.start()
 	
 

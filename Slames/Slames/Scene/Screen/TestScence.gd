@@ -51,4 +51,4 @@ func _on_f_IceWand_ice_picked() -> void:
 	remove_child(ice_f)
 
 func _on_f_LightningWand_lightning_picked() -> void:
-	remove_child	(lightning_f)
+	remove_child(lightning_f)

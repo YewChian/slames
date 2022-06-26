@@ -21,7 +21,7 @@ func _ready() -> void:
 func on_body_entered(smth):
 	var body_list = $Sprite/Area2D.get_overlapping_bodies()
 	var bodi = body_list[0]
-	#emit_signal("ice_picked")
+	emit_signal("ice_picked")
 	bodi.pickup("ice")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

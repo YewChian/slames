@@ -22,6 +22,6 @@ func _ready() -> void:
 func on_body_entered(smth):
 	var body_list = $Sprite/Area2D.get_overlapping_bodies()
 	var bodi = body_list[0]
-	#emit_signal("lightning_picked")
+	emit_signal("lightning_picked")
 	bodi.pickup("lightning")
 

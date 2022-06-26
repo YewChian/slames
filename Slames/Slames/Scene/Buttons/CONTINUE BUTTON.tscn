@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Slames/Scene/Buttons/MenuButton.tscn" type="PackedScene" id=1]
+
+[node name="CONTINUE BUTTON" instance=ExtResource( 1 )]
+scene_to_load = "res://NinjaAdventure/Scene/TestScence.tscn"
+
+[node name="RE" parent="." index="0"]
+text = "CONTINUE
+"

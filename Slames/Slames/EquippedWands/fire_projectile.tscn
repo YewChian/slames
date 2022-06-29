@@ -9,7 +9,7 @@ height = 11.8043
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 collision_mask = 3
-collision/safe_margin = 10.0
+collision/safe_margin = 20.0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

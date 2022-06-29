@@ -36,7 +36,7 @@ var gun_data: = {
 onready var fire_equipped = false
 onready var lightning_equipped = false
 onready var ice_equipped = false
-
+const fire_projectilePath = preload("res://Slames/EquippedWands/fire_projectile.tscn")
 #MOVEMENT
 var MAX_SPEED = 200
 var motion = Vector2.ZERO
@@ -133,22 +133,29 @@ func _physics_process(delta):
 		now = OS.get_ticks_msec()
 		if now >= next_attack_time:
 		# Play attack animation
-			if(last_direction == "up"):
-				attackanim("Attack up")
-			elif(last_direction == "right"):
-				attackanim("Attack right")
-			elif(last_direction == "left"):
-				attackanim("Attack left")
-			elif(last_direction == "diagonal_right"):
-				attackanim("ad_ur")
-			elif(last_direction == "diagonal_left"):
-				attackanim("ad_ul")
-			elif(last_direction == "diagonal_dright"):
-				attackanim("ad_dr")
-			elif(last_direction == "diagonal_dleft"):
-				attackanim("ad_dl")
-			else:
-				attackanim("Attack")
+			if ice_equipped == false and lightning_equipped == false and fire_equipped == false:
+				if(last_direction == "up"):
+					attackanim("Attack up")
+				elif(last_direction == "right"):
+					attackanim("Attack right")
+				elif(last_direction == "left"):
+					attackanim("Attack left")
+				elif(last_direction == "diagonal_right"):
+					attackanim("ad_ur")
+				elif(last_direction == "diagonal_left"):
+					attackanim("ad_ul")
+				elif(last_direction == "diagonal_dright"):
+					attackanim("ad_dr")
+				elif(last_direction == "diagonal_dleft"):
+					attackanim("ad_dl")
+				else:
+					attackanim("Attack")
+			elif ice_equipped == true:
+				pass
+			elif lightning_equipped == true:
+				pass
+			elif fire_equipped == true:
+				shoot_fire()
 			next_attack_time = now + attack_cooldown_time
 
 	#if target1!= null or target2!= null or target3 != null:
@@ -278,3 +285,15 @@ func pickup(gun_type:String):
 
 	var gun:Node2D = gun_data[gun_type].instance()
 	weaponPos.add_child(gun)
+	if gun_type == "fire":
+		fire_equipped = true
+	if gun_type == "lightning":
+		lightning_equipped = true
+	if gun_type == "ice":
+		ice_equipped = true
+func shoot_fire():
+	var fire_projectile = fire_projectilePath.instance()
+	get_parent().add_child(fire_projectile)
+	fire_projectile.global_position = $WandPosition.global_position
+	fire_projectile.global_rotation = $WandPosition.global_rotation
+	fire_projectile.velocity = Vector2.UP.rotated($WandPosition.global_rotation)

@@ -16,7 +16,8 @@ func _on_body_enter(_body):
 	bodi.hit()
 	
 	#emit_signal("somethingentered")
-	
+func hit():
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pas

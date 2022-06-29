@@ -12,7 +12,7 @@ func _physics_process(delta):
 	if RedSlimeLives.lives == 0:
 		emit_signal("bluewins")
 		emit_signal("reload2")
-		get_tree().change_scene("res://Slames/Scene/Screen/EndScreen.tscn")
+		get_tree().change_scene("res://Slames/Scene/Screen/EndScreenBlueWins.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

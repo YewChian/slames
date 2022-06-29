@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://wpn_projectiles 2.png" type="Texture" id=1]
+[ext_resource path="res://Slames/EquippedWands/fire_projectile.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.77114
+height = 11.8043
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+collision_mask = 3
+collision/safe_margin = 10.0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.07058, -32.1753 )
+shape = SubResource( 1 )
+
+[node name="wpn_projectiles 2" type="Sprite" parent="."]
+position = Vector2( 0.00616074, -31.461 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 7

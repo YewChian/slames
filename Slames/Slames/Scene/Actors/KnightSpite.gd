@@ -4,15 +4,13 @@ var start_loc
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
-
+var velo = Vector2()
 var attack_cooldown_time = 1000
 var next_attack_time = 0
-var attack_damage = 30
 var now
 signal reload
 var direct
 var timer = null
-var attacking = false
 onready var sd =  get_node("sd_cd")
 var attackAnim_timer = null
 var target1
@@ -26,6 +24,7 @@ onready var death_timer = get_node("Death")
 onready var attackAnim = get_node("AttackTimer")
 var spotDodge = 1
 var shake_amount = 1.0
+signal death
 
 #GUN
 onready var weaponPos = $WandPosition
@@ -34,11 +33,13 @@ var gun_data: = {
 	lightning = preload("res://Slames/EquippedWands/e_LightningWand.tscn"),
 	ice = preload("res://Slames/EquippedWands/e_IceWand.tscn"),
 }
-
+onready var fire_equipped = false
+onready var lightning_equipped = false
+onready var ice_equipped = false
+const fire_projectilePath = preload("res://Slames/EquippedWands/fire_projectile.tscn")
 
 #MOVEMENT
 var MAX_SPEED = 200
-var ACCERLERATION = 1000
 var motion = Vector2.ZERO
 var last_direction
 var move_speed = 20000
@@ -58,9 +59,6 @@ func _ready():
 	target1 = raycast1.get_collider()
 	target2 = raycast2.get_collider()
 	target3 = raycast3.get_collider()
-#	raycast1.set_enabled(false)
-#	raycast2.set_enabled(false)
-#	raycast3.set_enabled(false)
 	death_timer.connect("timeout",self,"restart_loc")
 	attackAnim.connect("timeout",self,"make_visible_attack")
 	sd.connect("timeout",self,"sd_cooldown")
@@ -121,22 +119,29 @@ func _physics_process(delta):
 		now = OS.get_ticks_msec()
 		if now >= next_attack_time:
 		# Play attack animation
-			if(last_direction == "up"):
-				attackanim("Attack up")
-			elif(last_direction == "right"):
-				attackanim("Attack right")
-			elif(last_direction == "left"):
-				attackanim("Attack left")
-			elif(last_direction == "d_ur"):
-				attackanim("ad_ur")
-			elif(last_direction == "d_ul"):
-				attackanim("ad_ul")
-			elif(last_direction == "d_dr"):
-				attackanim("ad_dr")
-			elif(last_direction == "d_dl"):
-				attackanim("ad_dl")
-			else:
-				attackanim("Attack")
+			if ice_equipped == false and lightning_equipped == false and fire_equipped == false:
+				if(last_direction == "up"):
+					attackanim("Attack up")
+				elif(last_direction == "right"):
+					attackanim("Attack right")
+				elif(last_direction == "left"):
+					attackanim("Attack left")
+				elif(last_direction == "d_ur"):
+					attackanim("ad_ur")
+				elif(last_direction == "d_ul"):
+					attackanim("ad_ul")
+				elif(last_direction == "d_dr"):
+					attackanim("ad_dr")
+				elif(last_direction == "d_dl"):
+					attackanim("ad_dl")
+				else:
+					attackanim("Attack")
+			elif ice_equipped == true:
+				pass
+			elif lightning_equipped == true:
+				pass
+			elif fire_equipped == true:
+				shoot_fire()
 			next_attack_time = now + attack_cooldown_time
 			
 	if Input.is_action_pressed("ui_spot"):
@@ -189,11 +194,15 @@ func apply_movement(accerlation):
 
 func hit():
 	#play death animation
+	emit_signal("death")
 	RedSlimeLives.lives -= 1
 	for gun in weaponPos.get_children():
 		gun.queue_free()
 	$AnimationPlayer.play("Die")
 	death_timer.start()
+	fire_equipped = false
+	ice_equipped = false
+	lightning_equipped = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 #	pass
@@ -246,9 +255,21 @@ func disable_raycast():
 func pickup(gun_type:String):
 	for gun in weaponPos.get_children():
 		gun.queue_free()
-	print("Picking up..." + gun_type)
 	var gun:Node2D = gun_data[gun_type].instance()
 	weaponPos.add_child(gun)
-	
+	if gun_type == "fire":
+		fire_equipped = true
+	if gun_type == "lightning":
+		lightning_equipped = true
+	if gun_type == "ice":
+		ice_equipped = true
+
+func shoot_fire():
+	var fire_projectile = fire_projectilePath.instance()
+	get_parent().add_child(fire_projectile)
+	fire_projectile.global_position = $WandPosition.global_position
+	fire_projectile.global_rotation = $WandPosition.global_rotation
+	fire_projectile.velocity = Vector2.UP.rotated($WandPosition.global_rotation)
+
 func _on_TileMap_somethingentered() -> void:
 	get_tree().queue_delete(self)

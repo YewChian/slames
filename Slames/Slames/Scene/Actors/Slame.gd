@@ -24,7 +24,7 @@ var attackAnim_timer = null
 onready var attackAnim = get_node("AttackTimer")
 var spotDodge = 1
 var shake_amount = 1.0
-
+signal death
 
 #Wands
 onready var weaponPos = $WandPosition
@@ -33,14 +33,15 @@ var gun_data: = {
 	lightning = preload("res://Slames/EquippedWands/e_LightningWand.tscn"),
 	ice = preload("res://Slames/EquippedWands/e_IceWand.tscn"),
 }
-
+onready var fire_equipped = false
+onready var lightning_equipped = false
+onready var ice_equipped = false
 
 #MOVEMENT
 var MAX_SPEED = 200
-var ACCERLERATION = 1000
 var motion = Vector2.ZERO
 var last_direction
-var move_speed = 8000
+var move_speed = 20000
 var speed
 
 #DASHING
@@ -210,6 +211,7 @@ func hit():
 #	))
 	for gun in weaponPos.get_children():
 		gun.queue_free()
+	emit_signal("death")
 	death_timer.start()
 	
 

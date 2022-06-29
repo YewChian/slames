@@ -613,6 +613,7 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 hframes = 10
 vframes = 5
+frame = 1
 
 [node name="Attack" type="Sprite" parent="."]
 visible = false

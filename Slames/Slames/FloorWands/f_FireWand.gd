@@ -5,6 +5,7 @@ extends Node2D
 # var a: int = 2
 # var b: String = "text"
 signal picked
+signal fire_picked
 var randloc = [
 	Vector2(180,470),
 
@@ -23,7 +24,9 @@ func on_body_entered(smth):
 	var body_list = $Sprite/Area2D.get_overlapping_bodies()
 	var bodi = body_list[0]
 	bodi.pickup("fire")
-	emit_signal("picked")
+	for child in get_parent().get_children():
+		child.queue_free()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

@@ -23,7 +23,8 @@ func on_body_entered(smth):
 	var bodi = body_list[0]
 	bodi.pickup("ice")
 	for child in get_parent().get_children():
-		child.queue_free()
+		if child == self:
+			child.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

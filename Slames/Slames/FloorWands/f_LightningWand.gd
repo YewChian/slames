@@ -24,5 +24,6 @@ func on_body_entered(smth):
 	var bodi = body_list[0]
 	bodi.pickup("lightning")
 	for child in get_parent().get_children():
-		child.queue_free()
+		if child == self:
+			child.queue_free()
 

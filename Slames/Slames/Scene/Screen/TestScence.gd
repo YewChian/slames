@@ -16,7 +16,7 @@ var ice_f
 var fire_f
 var lightning_f
 var choosewand:int
-var options = [0,1,2]
+var options = [0,2]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	init_weapons()
@@ -36,16 +36,15 @@ func hit2(smth):
 func init_weapons():
 	randomize()
 	choosewand = randi()%options.size()
-	choosewand = 2
 	if choosewand == 0:
 		fire_f = fire_f_path.instance()
 		$Wands.add_child(fire_f)
 
-	elif choosewand == 1:
+	elif choosewand == 2:
 		ice_f = ice_f_path.instance()
 		$Wands.add_child(ice_f)
 
-	elif choosewand == 2:
+	elif choosewand == 1:
 		lightning_f = lightning_f_path.instance()
 		$Wands.add_child(lightning_f)
 

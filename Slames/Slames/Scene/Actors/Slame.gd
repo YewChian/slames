@@ -37,6 +37,8 @@ onready var fire_equipped = false
 onready var lightning_equipped = false
 onready var ice_equipped = false
 const fire_projectilePath = preload("res://Slames/EquippedWands/fire_projectile.tscn")
+const lightning_projectilePath = preload("res://Slames/EquippedWands/lightning_projectile.tscn")
+
 #MOVEMENT
 var MAX_SPEED = 200
 var motion = Vector2.ZERO
@@ -153,7 +155,7 @@ func _physics_process(delta):
 			elif ice_equipped == true:
 				pass
 			elif lightning_equipped == true:
-				pass
+				shoot_lightning()
 			elif fire_equipped == true:
 				shoot_fire()
 			next_attack_time = now + attack_cooldown_time
@@ -210,6 +212,7 @@ func apply_movement(accerlation):
 	
 func hit():
 	#play death animation
+	return_origin()
 	$AnimationPlayer.play("Die")
 	Lives.lives -= 1
 #	Camera.set_offset(Vector2( \
@@ -291,9 +294,17 @@ func pickup(gun_type:String):
 		lightning_equipped = true
 	if gun_type == "ice":
 		ice_equipped = true
+		
 func shoot_fire():
 	var fire_projectile = fire_projectilePath.instance()
 	get_parent().add_child(fire_projectile)
 	fire_projectile.global_position = $WandPosition.global_position
 	fire_projectile.global_rotation = $WandPosition.global_rotation
 	fire_projectile.velocity = Vector2.UP.rotated($WandPosition.global_rotation)
+	
+func shoot_lightning():
+	var lightning_projectile = lightning_projectilePath.instance()
+	get_parent().add_child(lightning_projectile)
+	lightning_projectile.connect("hit_target",self,"return_origin")
+	lightning_projectile.global_position = $WandPosition.global_position
+	lightning_projectile.global_rotation = $WandPosition.global_rotation

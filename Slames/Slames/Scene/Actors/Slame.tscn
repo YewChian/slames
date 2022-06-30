@@ -591,6 +591,7 @@ radius = 22.507
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 position = Vector2( 6.17513, -2.14513 )
+collision/safe_margin = 20.0
 script = ExtResource( 1 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]

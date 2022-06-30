@@ -165,6 +165,7 @@ position = Vector2( 906.465, 486.15 )
 collision_mask = 3
 
 [node name="Boundary" parent="." instance=ExtResource( 6 )]
+visible = false
 collision_mask = 3
 
 [node name="Lives" parent="." instance=ExtResource( 5 )]
@@ -174,6 +175,11 @@ position = Vector2( 241.433, 110.293 )
 position = Vector2( -192.744, -96.6675 )
 
 [node name="Wands" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 554.738, 318.544 )
+current = true
+zoom = Vector2( 1.1, 1.1 )
 
 [connection signal="death" from="Player1" to="." method="_on_Player1_death"]
 [connection signal="target_hit" from="Player1" to="." method="_on_Player1_target_hit"]

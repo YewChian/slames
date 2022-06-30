@@ -50,10 +50,22 @@ func init_weapons():
 		lightning_f = lightning_f_path.instance()
 		$Wands.add_child(lightning_f)
 
-		
+func screen_shake():
+	var camera = get_node("Camera2D")
+	camera.transform.origin.x -= 6
+	camera.transform.origin.y -= 4	
+	yield(get_tree().create_timer(0.05), "timeout")	
+	camera.transform.origin.x += 12
+	camera.transform.origin.y += 1	
+	yield(get_tree().create_timer(0.05), "timeout")		
+	camera.transform.origin.x -= 6
+	camera.transform.origin.y += 3	
+
 func _on_Player1_death() -> void:
+	screen_shake()
 	init_weapons()
 
 
 func _on_Player2_death() -> void:
+	screen_shake()
 	init_weapons()

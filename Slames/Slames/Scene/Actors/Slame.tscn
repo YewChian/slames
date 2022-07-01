@@ -715,3 +715,7 @@ one_shot = true
 
 [node name="WandPosition" type="Position2D" parent="."]
 position = Vector2( 25.8249, 34.1451 )
+
+[node name="IceDashTimer" type="Timer" parent="."]
+
+[node name="IceDashCoolDown" type="Timer" parent="."]

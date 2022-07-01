@@ -707,6 +707,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="IceDashTimer" type="Timer" parent="."]
+
+[node name="IceDashCoolDown" type="Timer" parent="."]
+
 [node name="DashCoolDown" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true

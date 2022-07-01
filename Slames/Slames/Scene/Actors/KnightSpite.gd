@@ -38,6 +38,7 @@ onready var lightning_equipped = false
 onready var ice_equipped = false
 const fire_projectilePath = preload("res://Slames/EquippedWands/fire_projectile.tscn")
 const lightning_projectilePath = preload("res://Slames/EquippedWands/lightning_projectile.tscn")
+const ice_shardPath = preload("res://Slames/EquippedWands/ice_shard.tscn")
 
 #MOVEMENT
 var MAX_SPEED = 200
@@ -49,10 +50,15 @@ var speed
 #DASHING
 onready var dashcd = get_node("DashCoolDown")
 onready var dashtimer = get_node("DashTimer")
+onready var ice_dashcd = get_node("IceDashCoolDown")
+onready var ice_dashtimer = get_node("IceDashTimer")
 var dashDirection = Vector2(1,0)
 const dash_speed = 40000
+const ice_dash_speed = 60000
 var canDash = true
+var canIceDash = true
 var dashing = false
+var ice_dashing = false
 var velocity
 
 func _ready():
@@ -68,6 +74,9 @@ func _ready():
 	timer.connect("timeout",self,"sd_timeout")
 	dashtimer.connect("timeout",self,"set_dash_false")
 	dashcd.connect("timeout",self,"set_canDash_true")
+	#icedash
+	dashtimer.connect("timeout",self,"set_ice_dash_false")
+	dashcd.connect("timeout",self,"set_canIceDash_true")
 	
 func _physics_process(delta):
 	if ($AnimationPlayer.current_animation == "ad_ur") or ($AnimationPlayer.current_animation == "ad_ul") or ($AnimationPlayer.current_animation == "ad_dl") or ($AnimationPlayer.current_animation == "ad_dr") or ($AnimationPlayer.current_animation == "Attack up") or ($AnimationPlayer.current_animation == "Attack left") or ($AnimationPlayer.current_animation == "Attack right") or ($AnimationPlayer.current_animation == "Attack") or (spotDodge == 0) or ($AnimationPlayer.current_animation == "Die"):
@@ -137,8 +146,9 @@ func _physics_process(delta):
 					attackanim("ad_dl")
 				else:
 					attackanim("Attack")
-			elif ice_equipped == true:
-				pass
+			elif ice_equipped == true:				
+				shoot_ice()
+					
 			elif lightning_equipped == true:
 				shoot_lightning()
 			elif fire_equipped == true:
@@ -168,7 +178,10 @@ func _physics_process(delta):
 		$Attack1.cast_to = (axis.normalized() * 40)
 		#$Attack2.cast_to = axis.normalized() * 40
 		$Attack3.cast_to = (axis.normalized() * 40)
-	speed = dash_speed if dashing else move_speed
+	if(ice_dashing):
+		speed = ice_dash_speed
+	else:		
+		speed = dash_speed if dashing else move_speed
 	velocity = axis*speed*delta
 	motion = move_and_slide(velocity)
 	
@@ -228,6 +241,9 @@ func attackanim(direction):
 func set_dash_false():
 	dashing = false
 	get_node("Colider").disabled = false
+func set_ice_dash_false():
+	ice_dashing = false
+	get_node("Colider").disabled = false
 func return_origin():
 	position = start_loc
 func set_canDash_true():
@@ -281,6 +297,29 @@ func shoot_lightning():
 	lightning_projectile.global_position = $WandPosition.global_position
 	lightning_projectile.global_rotation = $WandPosition.global_rotation
 	
-
+func shoot_ice():
+	#dash
+	if canIceDash == true:
+		canIceDash = false
+		ice_dashing = true
+		get_node("Colider").disabled = true
+		ice_dashtimer.start()
+		ice_dashcd.start()
+		var ice_dash_duration = 0.1
+		yield(get_tree().create_timer(ice_dash_duration), "timeout")
+		#stop dash
+		ice_dashing = false
+		get_node("Colider").disabled = false
+		move_speed = 0
+		# instantiate ice
+		var ice_shard = ice_shardPath.instance()	
+		get_parent().add_child(ice_shard)
+		ice_shard.global_position = $WandPosition.global_position
+		ice_shard.global_rotation = $WandPosition.global_rotation
+		yield(get_tree().create_timer(1), "timeout")		
+		get_parent().remove_child(ice_shard)	
+		move_speed = 20000
+		canIceDash = true
+	
 func _on_TileMap_somethingentered() -> void:
 	get_tree().queue_delete(self)

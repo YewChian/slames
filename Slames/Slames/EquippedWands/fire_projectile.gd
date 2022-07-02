@@ -18,9 +18,14 @@ func _physics_process(delta):
 		var body = collision_info.collider
 		if body != $CollisionShape2D:
 			var reaction = body.hit()
-			if reaction != "same":
+			if reaction == "boundary":
+				get_parent().remove_child(self)
+			elif reaction != "same":
 				emit_signal("hit_target")
 				get_parent().remove_child(self)
 
 func hit():
 	return "same"
+
+func pickup(smth):
+	return "projectile"

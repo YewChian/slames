@@ -22,8 +22,9 @@ func _ready() -> void:
 func on_body_entered(smth):
 	var body_list = $Sprite/Area2D.get_overlapping_bodies()
 	var bodi = body_list[0]
-	bodi.pickup("lightning")
-	for child in get_parent().get_children():
-		if child == self:
-			child.queue_free()
+	var value = bodi.pickup("lightning")
+	if value == "picked_up":
+		for child in get_parent().get_children():
+			if child == self:
+				child.queue_free()
 

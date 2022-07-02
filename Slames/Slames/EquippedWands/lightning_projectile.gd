@@ -25,7 +25,9 @@ func _physics_process(delta):
 			if reaction != "same":
 				emit_signal("hit_target")
 				get_parent().remove_child(self)
-				
+
+func pickup(smth):
+	return "projectile"
 
 func hit():
 	return "same"

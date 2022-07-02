@@ -307,6 +307,8 @@ func pickup(gun_type:String):
 	if gun_type == "ice":
 		ice_equipped = true
 		
+	return "picked_up"
+		
 func shoot_fire():
 	var fire_projectile = fire_projectilePath.instance()
 	get_parent().add_child(fire_projectile)

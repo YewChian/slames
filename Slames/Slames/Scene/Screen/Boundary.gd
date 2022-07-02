@@ -19,4 +19,4 @@ func on_area2d_body_entered(body) :
 	body.area_entered(self)  
 
 func hit():
-	return "same"
+	return "boundary"

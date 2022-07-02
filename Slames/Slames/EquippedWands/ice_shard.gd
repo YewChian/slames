@@ -29,3 +29,5 @@ func _physics_process(delta):
 func hit():
 	return "same"
 	
+func pickup(smth):
+	return "projectile"

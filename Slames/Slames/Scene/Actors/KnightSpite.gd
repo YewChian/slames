@@ -243,8 +243,13 @@ func set_dash_false():
 func set_ice_dash_false():
 	ice_dashing = false
 	get_node("Colider").disabled = false
+	
 func return_origin():
 	position = start_loc
+	get_node("Colider").disabled = true
+	yield(get_tree().create_timer(1), "timeout")
+	get_node("Colider").disabled = false
+	
 func set_canDash_true():
 	canDash = true
 	

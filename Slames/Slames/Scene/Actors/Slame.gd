@@ -227,14 +227,13 @@ func hit():
 	return_origin()
 	$AnimationPlayer.play("Die")
 	Lives.lives -= 1
-#	Camera.set_offset(Vector2( \
-#		rand_range(-1.0, 1.0) * shake_amount, \
-#		rand_range(-1.0, 1.0) * shake_amount \
-#	))
 	for gun in weaponPos.get_children():
 		gun.queue_free()
 	emit_signal("death")
 	death_timer.start()
+	fire_equipped = false
+	ice_equipped = false
+	lightning_equipped = false
 	
 
 func make_visible_attack():
@@ -287,7 +286,10 @@ func check_hit():
 #			target3.hit()
 func return_origin():
 	position = start_loc
-			
+	get_node("CollisionShape2D").disabled = true
+	yield(get_tree().create_timer(1), "timeout")
+	get_node("CollisionShape2D").disabled = false
+	
 func set_canDash_true():
 	canDash = true
 	

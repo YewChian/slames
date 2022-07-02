@@ -12,7 +12,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("move")
 	timer.start()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if stepify(timer.time_left,0.01) <= 0.1:
 		$CollisionShape2D.disabled = false
 	if timer.is_stopped():
@@ -22,11 +22,13 @@ func _physics_process(delta):
 		var body = collision_info.collider
 		if body != $CollisionShape2D:
 			var reaction = body.hit()
-			if reaction != "same":
+			if reaction == "boundary":
+				get_parent().remove_child(self)
+			elif reaction != "same":
 				emit_signal("hit_target")
 				get_parent().remove_child(self)
 
-func pickup(smth):
+func pickup(_smth):
 	return "projectile"
 
 func hit():

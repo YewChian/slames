@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Slames/Scene/Screen/Boundary_Fixed.gd" type="Script" id=1]
+
+[node name="Boundary" type="TileMap"]
+format = 1
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( -98.2543, -55.4848 )
+polygon = PoolVector2Array( 1347.07, 2.90127, 1349.36, 787.965, 0.354507, 789.071, 0.207077, 0.247635, 26.742, 0.61618, 40.4036, 756.447, 1309.62, 752.979, 1313.83, 41.8928, 26.8157, 33.4165, 27.1842, 0.985016 )

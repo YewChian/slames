@@ -62,9 +62,17 @@ func screen_shake():
 
 func _on_Player1_death() -> void:
 	screen_shake()
+	player1.return_origin()
+	player2.return_origin()
 	init_weapons()
 
 
 func _on_Player2_death() -> void:
+	player1.return_origin()
+	player2.return_origin()
 	screen_shake()
 	init_weapons()
+
+
+#func _on_Player1_shake_screen() -> void:
+#	screen_shake()

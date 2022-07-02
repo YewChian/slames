@@ -11,18 +11,18 @@ func _ready():
 	$Area2D.connect("body_entered",self,"_on_body_enter")
 	
 func _on_body_enter(_body):
-	print("something entered")
 	body_list = $Area2D.get_overlapping_bodies()
 	var bodi = body_list[0]
 	bodi.hit()
 	
-
-func on_area2d_body_entered(body) :
-	body.area_entered(self)  
-
+	#emit_signal("somethingentered")
 func hit():
-	return "boundary"
+	pass
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	pas
+	
 
 
-func _on_Area2D_body_entered(body: Node) -> void:
+func _on_Area2D_body_entered(_body: Node) -> void:
 	pass # Replace with function body.

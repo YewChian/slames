@@ -9,7 +9,7 @@ signal reload1
 func _ready():
 	Lives.lives = 3
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Lives.lives == 2:
 		$Life3.hide()
 	if Lives.lives == 1:

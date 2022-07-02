@@ -15,6 +15,7 @@ func _on_body_enter(_body):
 	var bodi = body_list[0]
 	bodi.hit()
 	
+	
 	#emit_signal("somethingentered")
 func hit():
 	pass
@@ -22,3 +23,7 @@ func hit():
 #func _process(delta: float) -> void:
 #	pas
 	
+
+
+func _on_Area2D_body_entered(_body: Node) -> void:
+	pass # Replace with function body.

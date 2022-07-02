@@ -8,13 +8,13 @@ var velo = Vector2()
 var attack_cooldown_time = 1000
 var next_attack_time = 0
 var now
-signal reload
 var direct
 var timer = null
 onready var sd =  get_node("sd_cd")
 var attackAnim_timer = null
 var target1
 var target2
+signal shake_screen
 var target3
 signal target_hit
 onready var raycast1 = get_node("Attack1")
@@ -54,7 +54,7 @@ onready var ice_dashcd = get_node("IceDashCoolDown")
 onready var ice_dashtimer = get_node("IceDashTimer")
 var dashDirection = Vector2(1,0)
 const dash_speed = 40000
-const ice_dash_speed = 60000
+const ice_dash_speed = 100000
 var canDash = true
 var canIceDash = true
 var dashing = false
@@ -148,7 +148,6 @@ func _physics_process(delta):
 					attackanim("Attack")
 			elif ice_equipped == true:				
 				shoot_ice()
-					
 			elif lightning_equipped == true:
 				shoot_lightning()
 			elif fire_equipped == true:
@@ -275,6 +274,9 @@ func pickup(gun_type:String):
 		gun.queue_free()
 	var gun:Node2D = gun_data[gun_type].instance()
 	weaponPos.add_child(gun)
+	fire_equipped = false
+	lightning_equipped = false
+	ice_equipped = false
 	if gun_type == "fire":
 		fire_equipped = true
 	if gun_type == "lightning":
@@ -294,6 +296,7 @@ func shoot_fire():
 func shoot_lightning():
 	var lightning_projectile = lightning_projectilePath.instance()
 	get_parent().add_child(lightning_projectile)
+	#emit_signal("shake_screen")
 	lightning_projectile.connect("hit_target",self,"return_origin")
 	lightning_projectile.global_position = $WandPosition.global_position
 	lightning_projectile.global_rotation = $WandPosition.global_rotation
@@ -315,6 +318,8 @@ func shoot_ice():
 		# instantiate ice
 		var ice_shard = ice_shardPath.instance()	
 		get_parent().add_child(ice_shard)
+		#emit_signal("shake_screen")
+		ice_shard.connect("hit_target",self,"return_origin")
 		ice_shard.global_position = $WandPosition.global_position
 		ice_shard.global_rotation = $WandPosition.global_rotation
 		yield(get_tree().create_timer(1), "timeout")		
@@ -324,3 +329,4 @@ func shoot_ice():
 	
 func _on_TileMap_somethingentered() -> void:
 	get_tree().queue_delete(self)
+

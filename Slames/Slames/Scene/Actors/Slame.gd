@@ -52,7 +52,7 @@ onready var dashcd = get_node("DashCoolDown")
 onready var dashtimer = get_node("DashTimer")
 onready var ice_dashcd = get_node("IceDashCoolDown")
 onready var ice_dashtimer = get_node("IceDashTimer")
-const ice_dash_speed = 60000
+const ice_dash_speed = 100000
 var canIceDash = true
 var ice_dashing = false
 var dashDirection = Vector2(1,0)
@@ -338,6 +338,7 @@ func shoot_ice():
 		# instantiate ice
 		var ice_shard = ice_shardPath.instance()	
 		get_parent().add_child(ice_shard)
+		ice_shard.connect("hit_target",self,"return_origin")
 		ice_shard.global_position = $WandPosition.global_position
 		ice_shard.global_rotation = $WandPosition.global_rotation
 		yield(get_tree().create_timer(1), "timeout")		

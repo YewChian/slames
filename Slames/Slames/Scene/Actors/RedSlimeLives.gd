@@ -4,7 +4,7 @@ signal reload2
 func _ready():
 	RedSlimeLives.lives = 3
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if RedSlimeLives.lives == 2:
 		$Sprite3.hide()
 	if RedSlimeLives.lives == 1:

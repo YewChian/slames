@@ -35,18 +35,17 @@ func hit2(smth):
 
 func init_weapons():
 	randomize()
+	#choosewand = 2
 	choosewand = randi()%options.size()
-	choosewand = 0
 	if choosewand == 0:
 		fire_f = fire_f_path.instance()
 		$Wands.add_child(fire_f)
 
-	elif choosewand == 1:
+	elif choosewand == 2:
 		ice_f = ice_f_path.instance()
 		$Wands.add_child(ice_f)
-		$f_FireWand.queue_free()
-		$f_LightningWand.queue_free()
-	elif choosewand == 2:
+
+	elif choosewand == 1:
 		lightning_f = lightning_f_path.instance()
 		$Wands.add_child(lightning_f)
 

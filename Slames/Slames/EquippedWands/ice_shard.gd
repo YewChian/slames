@@ -6,21 +6,26 @@ var speed = 300
 # var a: int = 2
 # var b: String = "text"
 signal hit_target
+onready var timer = get_node("Timer")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimationPlayer.play("move")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	$AnimationPlayer.play("ice_shard")
+	timer.start()
+	
 func _physics_process(delta):
-	var collision_info = move_and_collide(velocity.normalized()*delta*speed)
+	if stepify(timer.time_left,0.01) <= 0.1:
+		$CollisionShape2D.disabled = false
+	if timer.is_stopped():
+		get_parent().remove_child(self)
+	var collision_info = move_and_collide(velocity)
 	if collision_info != null:
 		var body = collision_info.collider
 		if body != $CollisionShape2D:
 			var reaction = body.hit()
 			if reaction != "same":
 				emit_signal("hit_target")
-				get_parent().remove_child(self)
+				
 
 func hit():
 	return "same"
+	

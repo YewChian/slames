@@ -680,6 +680,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="sd_cd" type="Timer" parent="."]
+wait_time = 0.8
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false

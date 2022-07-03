@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Slames/Scene/Buttons/MenuButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Slames/Scene/Screen/EndScreen.gd" type="Script" id=3]
 [ext_resource path="res://Slames/Scene/Buttons/RestartButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Slames/Scene/Buttons/ContinueButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://cloud_menu_background.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -17,9 +18,10 @@ margin_left = -640.0
 margin_right = 640.0
 margin_bottom = 780.0
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="CloudMenuBackground" type="Sprite" parent="."]
+position = Vector2( 700, 415 )
+texture = ExtResource( 6 )
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_left = 120.0
@@ -41,8 +43,8 @@ size_flags_vertical = 3
 margin_top = 244.0
 margin_right = 1040.0
 margin_bottom = 319.0
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.0823529, 0.929412, 0.121569, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "GREEN WINS"
 align = 1
 __meta__ = {

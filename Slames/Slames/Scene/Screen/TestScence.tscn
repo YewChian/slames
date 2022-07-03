@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Slames/Scene/Screen/PitHole.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Slames/Scene/Actors/RedSlimeLives.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Slames/Scene/Screen/Boundary_Fixed.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Slames/Scene/Screen/TileMap2.gd" type="Script" id=7]
 [ext_resource path="res://Slames/Scene/Screen/TestScence.gd" type="Script" id=8]
+[ext_resource path="res://cloud_background.png" type="Texture" id=9]
+[ext_resource path="res://field_background.png" type="Texture" id=10]
+[ext_resource path="res://cloud_background_2.png" type="Texture" id=11]
 [ext_resource path="res://tileset_dirt+hole.png" type="Texture" id=13]
 
 [sub_resource type="TileSet" id=1]
@@ -179,6 +182,26 @@ zoom = Vector2( 1.1, 1.1 )
 
 [node name="Boundary" parent="." instance=ExtResource( 6 )]
 position = Vector2( -18.7044, -29.6153 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 673, 400 )
+texture = ExtResource( 10 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 686, 408 )
+texture = ExtResource( 11 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 684, 347 )
+texture = ExtResource( 9 )
 
 [connection signal="death" from="Player1" to="." method="_on_Player1_death"]
 [connection signal="shake_screen" from="Player1" to="." method="_on_Player1_shake_screen"]

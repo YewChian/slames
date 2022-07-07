@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/slame_basic_attack (mp3cut.net).mp3-80f9800bd9c5a073e06b3f6ef403cd41.mp3str"
+
+[deps]
+
+source_file="res://slame_basic_attack (mp3cut.net).mp3"
+dest_files=[ "res://.import/slame_basic_attack (mp3cut.net).mp3-80f9800bd9c5a073e06b3f6ef403cd41.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lightning (mp3cut.net).mp3-c06e6b707f397554d623a958bc92fcbc.mp3str"
+
+[deps]
+
+source_file="res://lightning (mp3cut.net).mp3"
+dest_files=[ "res://.import/lightning (mp3cut.net).mp3-c06e6b707f397554d623a958bc92fcbc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

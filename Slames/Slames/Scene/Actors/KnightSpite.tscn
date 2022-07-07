@@ -1,8 +1,11 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://slame_green_idle_move_dodge__death_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Slames/Scene/Actors/KnightSpite.gd" type="Script" id=2]
 [ext_resource path="res://slame_green_baseatk_sheet.png" type="Texture" id=3]
+[ext_resource path="res://slame_basic_attack (mp3cut.net).mp3" type="AudioStream" id=4]
+[ext_resource path="res://death (mp3cut.net).mp3" type="AudioStream" id=5]
+[ext_resource path="res://sla_weapon_pickup (mp3cut.net).mp3" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack"
@@ -734,3 +737,12 @@ rotation = 5.49779
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -17.4643, -8.60371 )
 shape = SubResource( 28 )
+
+[node name="basic_attack_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="pickup_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="death_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

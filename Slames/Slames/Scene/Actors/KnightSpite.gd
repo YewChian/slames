@@ -212,6 +212,7 @@ func hit():
 	RedSlimeLives.lives -= 1
 	for gun in weaponPos.get_children():
 		gun.queue_free()
+	$death_mp3.play()
 	$AnimationPlayer.play("Die")
 	death_timer.start()
 	fire_equipped = false
@@ -230,6 +231,7 @@ func make_visible_attack():
 func attackanim(direction):
 	get_node("Attack").visible = not get_node("Attack").visible
 	$AnimationPlayer.play(direction)
+	$basic_attack_mp3.play()
 #	camera.set_offset(Vector2( \
 #		rand_range(-1.0, 1.0) * shake_amount, \
 #		rand_range(-1.0, 1.0) * shake_amount \
@@ -275,6 +277,7 @@ func disable_raycast():
 	raycast3.set_enabled(false)
 
 func pickup(gun_type:String):
+	$pickup_mp3.play()
 	for gun in weaponPos.get_children():
 		gun.queue_free()
 	var gun:Node2D = gun_data[gun_type].instance()

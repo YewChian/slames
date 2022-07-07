@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sla_weapon_pickup (mp3cut.net).mp3-f81be0cfea32cd98e790e852185f1d47.mp3str"
+
+[deps]
+
+source_file="res://sla_weapon_pickup (mp3cut.net).mp3"
+dest_files=[ "res://.import/sla_weapon_pickup (mp3cut.net).mp3-f81be0cfea32cd98e790e852185f1d47.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

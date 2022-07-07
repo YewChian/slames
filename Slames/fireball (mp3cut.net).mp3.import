@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fireball (mp3cut.net).mp3-522d1f7ce5bab19de04d36f9bf029932.mp3str"
+
+[deps]
+
+source_file="res://fireball (mp3cut.net).mp3"
+dest_files=[ "res://.import/fireball (mp3cut.net).mp3-522d1f7ce5bab19de04d36f9bf029932.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -25,6 +25,7 @@ func on_body_entered(_smth):
 	var bodi = body_list[0]
 	var value = bodi.pickup("fire")
 	if value == "picked_up":
+		$AudioStreamPlayer.play()
 		for child in get_parent().get_children():
 			child.queue_free()
 

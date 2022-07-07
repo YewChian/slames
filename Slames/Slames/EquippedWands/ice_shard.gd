@@ -10,6 +10,7 @@ onready var timer = get_node("Timer")
 
 func _ready() -> void:
 	$AnimationPlayer.play("ice_shard")
+	$AudioStreamPlayer.play()
 	timer.start()
 	
 func _physics_process(_delta):

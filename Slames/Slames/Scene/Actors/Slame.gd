@@ -225,6 +225,7 @@ func apply_movement(accerlation):
 func hit():
 	#play death animation
 	return_origin()
+	$death_mp3.play()
 	$AnimationPlayer.play("Die")
 	Lives.lives -= 1
 	for gun in weaponPos.get_children():
@@ -243,6 +244,7 @@ func make_visible_attack():
 func attackanim(direction):
 	get_node("Attack").visible = not get_node("Attack").visible
 	$AnimationPlayer.play(direction)
+	$basic_attack_mp3.play()
 	check_hit()
 	attackAnim_timer.start()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -297,6 +299,7 @@ func _something_entered() -> void:
 	get_tree().queue_delete(self) # Replace with function body.
 	
 func pickup(gun_type:String):
+	$pickup_mp3.play()
 	for gun in weaponPos.get_children():
 		gun.queue_free()
 

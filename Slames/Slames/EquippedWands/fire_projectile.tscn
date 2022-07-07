@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://wpn_projectile_final.png" type="Texture" id=1]
 [ext_resource path="res://Slames/EquippedWands/fire_projectile.gd" type="Script" id=2]
+[ext_resource path="res://fireball (mp3cut.net).mp3" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.77114
@@ -42,3 +43,6 @@ vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/move = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

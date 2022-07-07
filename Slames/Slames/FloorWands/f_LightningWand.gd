@@ -23,6 +23,7 @@ func on_body_entered(_smth):
 	var bodi = body_list[0]
 	var value = bodi.pickup("lightning")
 	if value == "picked_up":
+		print("playing audio")
 		for child in get_parent().get_children():
 			if child == self:
 				child.queue_free()

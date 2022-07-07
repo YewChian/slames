@@ -1,8 +1,11 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Slames/Scene/Actors/Slame.gd" type="Script" id=1]
 [ext_resource path="res://slame_blue_idle_move_dodge__death_sheet.png" type="Texture" id=2]
 [ext_resource path="res://slame_baseatk_sheet.png" type="Texture" id=3]
+[ext_resource path="res://slame_basic_attack (mp3cut.net).mp3" type="AudioStream" id=4]
+[ext_resource path="res://death (mp3cut.net).mp3" type="AudioStream" id=5]
+[ext_resource path="res://sla_weapon_pickup (mp3cut.net).mp3" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.4
@@ -719,3 +722,12 @@ position = Vector2( 25.8249, 34.1451 )
 [node name="IceDashTimer" type="Timer" parent="."]
 
 [node name="IceDashCoolDown" type="Timer" parent="."]
+
+[node name="basic_attack_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="death_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="pickup_mp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )

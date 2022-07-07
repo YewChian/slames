@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://wpn_projectile_final.png" type="Texture" id=1]
 [ext_resource path="res://Slames/EquippedWands/ice_shard.gd" type="Script" id=2]
+[ext_resource path="res://ice (mp3cut.net).mp3" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.9
@@ -51,3 +52,7 @@ anims/ice_shard = SubResource( 2 )
 polygon = PoolVector2Array( -14, -6, -10.25, -3.5, -1, -12.25, 9.75, -4.75, 12, -6, 9, -13, -1, -17, -9, -15 )
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
